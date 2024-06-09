@@ -1,25 +1,25 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
 
-function App() {
+import "./App.css";
+import Game from "./Components/Game";
+import StartGame from "./Components/StartGame";
+
+
+
+export default function App() {
+
+  const [isGameStarted, setGameStarted] = useState(false);
+
+  function playGame (){
+    setGameStarted((prev) =>{
+      return !prev
+    })
+  }
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      {isGameStarted ? <StartGame/> : <Game click={playGame} />}
+      
     </div>
   );
 }
-
-export default App;
